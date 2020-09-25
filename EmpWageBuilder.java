@@ -16,6 +16,7 @@ public class EmpWageBuilder
 		public int numOfWorkingDays;
 		public int maxHrsPerMonth;
 		public int totalEmpWage;
+		public ArrayList<Integer> dailyWage = new ArrayList<Integer>();
 
 		public CompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHrsPerMonth)
 		{
@@ -23,6 +24,7 @@ public class EmpWageBuilder
 			this.empRatePerHour = empRatePerHour;
 			this.numOfWorkingDays = numOfWorkingDays;
 			this.maxHrsPerMonth = maxHrsPerMonth;
+			
 		}
 		public void setTotalEmpWage(int totalEmpWage)
 		{
@@ -85,6 +87,8 @@ public class EmpWageBuilder
 			
 				totalEmpHrs += empHrs;
 				System.out.println("Day#: "+ totalWorkingDays + "Emp Hr: "+empHrs);
+				companyEmpWage.dailyWage.add( empHrs*companyEmpWage.empRatePerHour);
+				System.out.println("Daily wage: "+ companyEmpWage.dailyWage.get(totalWorkingDays-1));
 			}
 			return totalEmpHrs * companyEmpWage.empRatePerHour;
 			//System.out.println("Total Emp Wage for Company: "+company+" is: "+totalEmpWage);
