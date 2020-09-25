@@ -1,5 +1,12 @@
 public class EmpWageBuilder
-{
+{	
+	public interface ComputeEmpWageInterface
+	{
+		public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHrsPerMonth);
+		public void computeEmpWage();
+		public int computeEmpWage(CompanyEmpWage companyEmpWage);
+		
+	}
 	public static class CompanyEmpWage
 	{
 		public String company;
@@ -26,7 +33,7 @@ public class EmpWageBuilder
 		}
 
 	}
-	public static class EmpWageBuilderUC10
+	public static class EmpWageBuilderUC10 implements ComputeEmpWageInterface
 	{
 	
 		static final int IS_FULL_TIME= 2;
@@ -84,7 +91,7 @@ public class EmpWageBuilder
 	public static void main(String[] args)
 	{
 		System.out.println("Welcome to Employee Wage Computation Problem");
-		EmpWageBuilderUC10 empWageBuilder = new EmpWageBuilderUC10();
+		ComputeEmpWageInterface empWageBuilder = new EmpWageBuilderUC10();
 		empWageBuilder.addCompanyEmpWage("DMart", 20, 2, 10);
 		empWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 20);
 		empWageBuilder.computeEmpWage();
