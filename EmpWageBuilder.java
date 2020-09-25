@@ -45,15 +45,18 @@ public class EmpWageBuilder
 	
 		private int numOfCompany = 0;
 		public ArrayList<CompanyEmpWage> companyEmpWageArraylist;
+		public HashMap<String,CompanyEmpWage> companyEmpWageMap;
 	
 		public EmpWageBuilderUC10()
 		{
 			companyEmpWageArraylist =new ArrayList<CompanyEmpWage>();
+			companyEmpWageMap = new HashMap<String,CompanyEmpWage>();
 		}
 		public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHrsPerMonth)
 		{
 			CompanyEmpWage c = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays,maxHrsPerMonth);
 			companyEmpWageArraylist.add(c);
+			companyEmpWageMap.put(company,c);
 			//numOfCompany++;
 		}
 		public void computeEmpWage()
@@ -94,15 +97,23 @@ public class EmpWageBuilder
 			//System.out.println("Total Emp Wage for Company: "+company+" is: "+totalEmpWage);
 			//return totalEmpWage;
 		}
+		public int getTotalWage(String company)
+		{
+			return companyEmpWageMap.get(company).totalEmpWage;
+		}
 	}	
 	
 	public static void main(String[] args)
 	{
 		System.out.println("Welcome to Employee Wage Computation Problem");
-		ComputeEmpWageInterface empWageBuilder = new EmpWageBuilderUC10();
+		EmpWageBuilderUC10 empWageBuilder = new EmpWageBuilderUC10();
 		empWageBuilder.addCompanyEmpWage("DMart", 20, 2, 10);
 		empWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 20);
 		empWageBuilder.computeEmpWage();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Company Name: ");
+		String c = sc.nextLine();
+		System.out.println("Total Emp wage of company "+ c +" is: "+ empWageBuilder.getTotalWage(c));
 		
 	}
 
